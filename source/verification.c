@@ -73,7 +73,7 @@ int	verification_next(t_engine *e)
 		return (pt("Error : Sol/plafond précisée deux fois\n"));
 	else if (!mapvalidation(e))
 		return (pt("Error : La carte n'est pas entourée de murs\n"));
-	retrun (0);
+	return (0);
 }
 
 int		verification_config(t_engine *e)
