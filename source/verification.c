@@ -61,7 +61,7 @@ int		mapvalidation(t_engine *engine)
 	return (1);
 }
 
-int	verification_next(t_engine *e)
+int		verification_next(t_engine *e)
 {
 	if (e->error == 1)
 		return (pt("Error : malloc error\n"));
