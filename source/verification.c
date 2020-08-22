@@ -61,7 +61,7 @@ int		mapvalidation(t_engine *engine)
 	return (1);
 }
 
-void	verification_next(t_engine *e)
+int	verification_next(t_engine *e)
 {
 	if (e->error == 1)
 		return (pt("Error : malloc error\n"));
@@ -73,6 +73,7 @@ void	verification_next(t_engine *e)
 		return (pt("Error : Sol/plafond précisée deux fois\n"));
 	else if (!mapvalidation(e))
 		return (pt("Error : La carte n'est pas entourée de murs\n"));
+	retrun (0);
 }
 
 int		verification_config(t_engine *e)
@@ -93,6 +94,5 @@ int		verification_config(t_engine *e)
 		return (pt("Error : Pas de position de départ\n"));
 	else if (e->player.error > 1)
 		return (pt("Error : Plusieurs positions de départ\n"));
-	verification_next(e);
-	return (0);
+	return (verification_next(e));
 }
