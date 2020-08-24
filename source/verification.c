@@ -21,7 +21,8 @@ int		is_extention(char *path, char *extention)
 
 	challenge = -1;
 	len_extention = ft_strlen(extention);
-	spot = ft_strrchr(path, '.');
+	if(!(spot = ft_strrchr(path, '.')))
+		return (0);
 	len_spot = ft_strlen(spot);
 	if (len_spot != len_extention)
 		return (0);
