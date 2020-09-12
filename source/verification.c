@@ -6,7 +6,7 @@
 /*   By: fassani <fassani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 11:34:35 by fassani           #+#    #+#             */
-/*   Updated: 2020/08/22 14:17:58 by fassani          ###   ########.fr       */
+/*   Updated: 2020/09/11 19:32:48 by fassani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		is_extention(char *path, char *extention)
 
 	challenge = -1;
 	len_extention = ft_strlen(extention);
-	if(!(spot = ft_strrchr(path, '.')))
+	if (!(spot = ft_strrchr(path, '.')))
 		return (0);
 	len_spot = ft_strlen(spot);
 	if (len_spot != len_extention)

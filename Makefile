@@ -6,7 +6,7 @@
 #    By: fassani <fassani@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/15 04:00:06 by fassani           #+#    #+#              #
-#    Updated: 2020/08/22 14:02:57 by fassani          ###   ########.fr        #
+#    Updated: 2020/09/12 18:16:16 by fassani          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,15 +48,20 @@ MLX_MAC	= ${ib_MLXMAC}/libmlx.dylib
 Lib_FT = ./lib/libft
 LIBFT 	= ${Lib_FT}/libft.a
 
+Lib_MAPVALIDATOR = ./lib/mapvalidator
+MAPVALIDATOR 	= ${Lib_MAPVALIDATOR}/mapvalidator.a
+
 ${NAME}: ${OBJS}
 	make -C ${Lib_MLXLINUX}
 	make -C ${Lib_FT}
-	${CC} ${CFLAGS} -o3 ${OBJS} -I ${INCS} ${MLX_LINUX} ${LIBFT} -lm -lbsd -lX11 -lXext -o $(NAME)
+	make -C ${Lib_MAPVALIDATOR}
+	${CC} ${CFLAGS} -o3 ${OBJS} -I ${INCS} ${MLX_LINUX} ${LIBFT} ${MAPVALIDATOR} -lm -lbsd -lX11 -lXext -o $(NAME)
 
 sanitize: ${OBJS}
 	make -C ${Lib_MLXLINUX}
 	make -C ${Lib_FT}
-	${CC} ${CFLAGS}	-fsanitize=address -o3 ${OBJS} -I ${INCS} ${MLX_LINUX} ${LIBFT} -lm -lbsd -lX11 -lXext -o $(NAME)
+	make -C ${Lib_MAPVALIDATOR}
+	${CC} ${CFLAGS}	-fsanitize=address -o3 ${OBJS} -I ${INCS} ${MLX_LINUX} ${LIBFT} ${MAPVALIDATOR} -lm -lbsd -lX11 -lXext -o $(NAME)
 
 opengl: ${OBJS}
 	make -C ${Lib_MLXOPENGL}
@@ -80,6 +85,7 @@ allclean:
 	@make clean -C $(Lib_MLXMAC)
 	@make clean -C $(Lib_MLXLINUX)
 	@make clean -C $(Lib_FT)
+	@make clean -C $(Lib_MAPVALIDATOR)
 
 fclean: clean
 	${RM} ${NAME}
