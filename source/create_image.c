@@ -99,12 +99,14 @@ int		draw_step1(t_engine *engine)
 	return (1);
 }
 
-void	save_image(int fd)
+void	save_image(int fd, char *path)
 {
 	int			fd2;
 	t_engine	engine;
 
 	init_engine(&engine);
+	if (!load_word_map(&engine, path))
+		return ;
 	if (readconfig(fd, &engine, 0, 1))
 	{
 		fd2 = open("save.bmp", O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);

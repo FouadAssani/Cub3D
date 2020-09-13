@@ -12,12 +12,12 @@
 
 #include "./mapvalidator.h"
 
-void	pt(char *str)
+void	m_pt(char *str)
 {
 	ft_putstr_fd(str, 1);
 }
 
-int		clean_spaces(char *line, int *i)
+int		m_clean_spaces(char *line, int *i)
 {
 	while ((line[*i] == ' ' || line[*i] == '\t' || line[*i] == '\n')
 	|| (line[*i] == '\r' || line[*i] == '\v' || line[*i] == '\f'))

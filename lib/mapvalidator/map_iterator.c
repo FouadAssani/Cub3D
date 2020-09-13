@@ -49,7 +49,7 @@ int		buff_map(int fd, char **tab)
 	while (index == 1)
 	{
 		index = get_next_line(fd, &ln);
-		if (!line_handler(ln, tab[nb_line], &nb_line, &map_begin))
+		if (!map_line_handler(ln, tab[nb_line], &nb_line, &map_begin))
 			return (0);
 		free(ln);
 	}
@@ -110,7 +110,8 @@ int		map_verification(char **tab, int max_x, int max_y)
 			if (!v_left(tab, x, y) || !v_right(tab, x, y, max_x)
 				|| !v_up(tab, x, y) || !v_down(tab, x, y, max_y))
 			{
-				pt("Error: la map n'est pas fermé\n");
+				m_pt("Error: la map n'est pas fermé\n");
+				free_map(tab, max_y);
 				return (0);
 			}
 			x++;

@@ -22,7 +22,7 @@ void	test_save_option(int argc, char const *argv[], int fd)
 			pt("usage: Cub3D [Path config file] [--save]\n");
 			return ;
 		}
-		save_image(fd);
+		save_image(fd, (char*)argv[1]);
 	}
 	else if (argc > 3)
 	{
@@ -31,7 +31,7 @@ void	test_save_option(int argc, char const *argv[], int fd)
 		return ;
 	}
 	else
-		game(fd);
+		game(fd, (char*)argv[1]);
 }
 
 int		main(int argc, char const *argv[])

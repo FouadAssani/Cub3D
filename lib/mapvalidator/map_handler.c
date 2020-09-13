@@ -12,16 +12,17 @@
 
 #include "./mapvalidator.h"
 
-int		line_handler(char *ln, char *tab_line, int *nb_line, int *map_begin)
+int		map_line_handler(char *ln, char *tab_line, int *nb_line, int *map_begin)
 {
 	int i;
 
 	i = 0;
-	clean_spaces(ln, &i);
+	m_clean_spaces(ln, &i);
 	if (*map_begin == 1 && ln[i] != '1')
 	{
 		if (ln[i] == 0)
-			pt("Error: ligne vide détécté dans la map\n");
+			m_pt("Error: ligne vide détécté dans la map\n");
+		free(ln);
 		return (0);
 	}
 	if (ln[i] == '1')
@@ -35,7 +36,7 @@ int		line_handler(char *ln, char *tab_line, int *nb_line, int *map_begin)
 
 void	map_size_handler(char *ln, int *i, int *x, int *y)
 {
-	clean_spaces(ln, i);
+	m_clean_spaces(ln, i);
 	if (ln[*i] == '1')
 	{
 		if (ft_strlen(ln) > *x)

@@ -16,20 +16,20 @@ int		buffering_grid(int fd, char **tab, int *max_x, int *max_y)
 {
 	if (!buff_map(fd, tab))
 	{
-		pt("Error: la map n'est pas fermé\n");
+		m_pt("Error: la map n'est pas fermé\n");
 		free_map(tab, *max_y);
 		return (0);
 	}
 	if (!fill_map(tab, *max_x, *max_y))
 	{
-		pt("Error: caractere non autorisé\n");
+		m_pt("Error: caractere non autorisé\n");
 		free_map(tab, *max_y);
 		return (0);
 	}
 	return (1);
 }
 
-char	**readconfig(const char *path, char **tab, int *m_x, int *m_y)
+char	**map_readconfig(const char *path, char **tab, int *m_x, int *m_y)
 {
 	int i;
 	int fd;
@@ -65,13 +65,13 @@ char	**mapvalidator(const char *path, char **tab, int *m_x, int *m_y)
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
-		pt("Error: impossible d'ouvrir le fichier\n");
+		m_pt("Error: impossible d'ouvrir le fichier\n");
 		free_map(tab, *m_y);
 		return (0);
 	}
-	if (!(tab = readconfig(path, tab, m_x, m_y)))
+	if (!(tab = map_readconfig(path, tab, m_x, m_y)))
 	{
-		pt("Error: map non valide\n");
+		m_pt("Error: map non valide\n");
 		free_map(tab, *m_y);
 		return (0);
 	}

@@ -40,11 +40,13 @@ int	start_game(t_engine *engine)
 	return (0);
 }
 
-int	game(int fd)
+int	game(int fd, char *path)
 {
 	t_engine engine;
 
 	init_engine(&engine);
+	if (!load_word_map(&engine, path))
+		return (0);
 	if (readconfig(fd, &engine, 0, 1))
 	{
 		start_game(&engine);

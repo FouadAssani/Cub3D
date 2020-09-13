@@ -36,6 +36,19 @@ int		line_handler(t_engine *e, char *ln, int *i)
 	return (0);
 }
 
+int		load_word_map(t_engine *engine, char *path)
+{
+	if (!(engine->world_map.grid = mapvalidator(path, engine->world_map.grid,
+		&engine->world_map.x, &engine->world_map.y)))
+	{
+		free_memory(engine);
+		if (engine->ptr != 0)
+			free(engine->ptr);
+		return (0);
+	}
+	return (1);
+}
+
 int		ping_items(t_engine *e)
 {
 	int		i;
@@ -73,7 +86,7 @@ int		readconfig(int fd, t_engine *engine, int nb_ligne, int index)
 	{
 		index = get_next_line(fd, &ln);
 		nb_ligne++;
-		if (valide_config_line(engine, ln, index, nb_ligne) == -1)
+		if (valide_config_line(engine, ln, nb_ligne) == -1)
 			index = -1;
 		free(ln);
 	}

@@ -3,7 +3,7 @@ NO ./textures/gray_terracotta.xpm
 SO ./textures/sandstone.xpm
 WE ./textures/red_sandstone.xpm
 EA ./textures/bricks.xpm
-S ./textures/written_book.xpm
+S  ./textures/barrel.xpm
 F 115,115,115
 C 217,250,252
 

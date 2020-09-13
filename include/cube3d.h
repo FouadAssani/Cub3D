@@ -19,6 +19,7 @@
 # include "../lib/minilibx_linux/mlx.h"
 # include "../lib/libft/includes/libft.h"
 # include "../lib/libft/includes/get_next_line.h"
+# include "../lib/mapvalidator/mapvalidator.h"
 # define SPEED 9
 # define TURN 0.04
 # define ESC 65307
@@ -129,13 +130,13 @@ void				draw_step4(t_engine *engine, int fd);
 void				draw_step3(t_engine *engine, int fd);
 void				draw_step2(t_engine *engine, int fd);
 int					draw_step1(t_engine *engine);
-void				save_image(int fd);
+void				save_image(int fd, char *path);
 void				draw(t_engine *engine, int size);
 int					fisheye_correction(t_engine *engine);
 void				store(t_engine *engine);
 int					exit_game(t_engine *engine);
 int					start_game(t_engine *engine);
-int					game(int fd);
+int					game(int fd, char *path);
 void				free_memory(t_engine *engine);
 void				free_textures(t_engine *engine);
 void				init_world(t_engine *engine);
@@ -154,7 +155,7 @@ int					on_released_event(int key, t_engine *engine);
 void				test_save_option(int argc, char const *argv[], int fd);
 int					main(int argc, char const *argv[]);
 int					get_size_map_line(t_engine *engine, char *line);
-char				*parse_map_line(t_engine *e, char *l, int *i, int j);
+void				parse_map_line(t_engine *e, char *l, int *i);
 void				map(t_engine *engine, char *line, int *i);
 void				move_up_down(t_engine *engine, char dir);
 void				move_left_right(t_engine *engine, char dir);
@@ -170,7 +171,7 @@ int					line_handler(t_engine *e, char *ln, int *i);
 int					ping_items(t_engine *e);
 void				is_invalide_line(char *ln, int *error, int *i);
 int					valide_config_line(t_engine *e,
-	char *ln, int index, int nb_l);
+	char *ln, int nb_l);
 int					readconfig(int fd, t_engine *engine,
 	int nb_ligne, int index);
 void				load_texture(t_engine *e, t_image *img, char *file);
@@ -186,5 +187,6 @@ int					is_extention(char *path, char *extention);
 int					mapvalidation(t_engine *engine);
 int					verification_config(t_engine *e);
 void				view_spawn(t_engine *engine);
+int					load_word_map(t_engine *engine, char *path);
 
 #endif

@@ -35,7 +35,7 @@ void	is_invalide_line(char *ln, int *error, int *i)
 	}
 }
 
-int		valide_config_line(t_engine *e, char *ln, int index, int nb_l)
+int		valide_config_line(t_engine *e, char *ln, int nb_l)
 {
 	int error;
 	int i;
@@ -44,13 +44,6 @@ int		valide_config_line(t_engine *e, char *ln, int index, int nb_l)
 	error = 1;
 	clean_spaces(ln, &i);
 	is_invalide_line(ln, &error, &i);
-	if (e->world_map.grid != 0)
-	{
-		if (ln[i] == 0 && index != 0)
-		{
-			error = 1;
-		}
-	}
 	if (error == 1)
 	{
 		e->world_map.error = 2;

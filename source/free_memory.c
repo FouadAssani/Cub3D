@@ -36,8 +36,5 @@ void	free_memory(t_engine *engine)
 		mlx_destroy_image(engine->ptr, engine->image.ptr);
 	if (engine->items != 0)
 		free(engine->items);
-	while (i < engine->world_map.y)
-		free(engine->world_map.grid[i++]);
-	if (engine->world_map.grid != 0)
-		free(engine->world_map.grid);
+	free_map(engine->world_map.grid, engine->world_map.y);
 }

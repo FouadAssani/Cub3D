@@ -36,14 +36,8 @@ RM		= rm -f
 CC		= clang
 CFLAGS	= -Wall -Wextra -Werror
 
-Lib_MLXOPENGL = ./lib/minilibx_opengl/
-MLX_OPENGL 	= ${Lib_MLXOPENGL}libmlx.a
-
 Lib_MLXLINUX = ./lib/minilibx_linux/
 MLX_LINUX 	= ${Lib_MLXLINUX}libmlx.a
-
-Lib_MLXMAC = ./lib/minilibx_mac/
-MLX_MAC	= ${ib_MLXMAC}/libmlx.dylib
 
 Lib_FT = ./lib/libft
 LIBFT 	= ${Lib_FT}/libft.a
@@ -55,23 +49,13 @@ ${NAME}: ${OBJS}
 	make -C ${Lib_MLXLINUX}
 	make -C ${Lib_FT}
 	make -C ${Lib_MAPVALIDATOR}
-	${CC} ${CFLAGS} -o3 ${OBJS} -I ${INCS} ${MLX_LINUX} ${LIBFT} ${MAPVALIDATOR} -lm -lbsd -lX11 -lXext -o $(NAME)
+	${CC} ${CFLAGS} -o3 ${OBJS} -I ${INCS} ${MLX_LINUX} ${MAPVALIDATOR} ${LIBFT} -lm -lbsd -lX11 -lXext -o $(NAME)
 
 sanitize: ${OBJS}
 	make -C ${Lib_MLXLINUX}
 	make -C ${Lib_FT}
 	make -C ${Lib_MAPVALIDATOR}
-	${CC} ${CFLAGS}	-fsanitize=address -o3 ${OBJS} -I ${INCS} ${MLX_LINUX} ${LIBFT} ${MAPVALIDATOR} -lm -lbsd -lX11 -lXext -o $(NAME)
-
-opengl: ${OBJS}
-	make -C ${Lib_MLXOPENGL}
-	make -C ${Lib_FT}
-	${CC} ${CFLAGS} ${OBJS} -I ${INCS} ${MLX_OPENGL} ${LIBFT} -framework OpenGL -framework AppKit -o $(NAME)
-
-mac: ${OBJS}
-	make -C ${Lib_MLXMAC}
-	make -C ${Lib_FT}
-	${CC} ${CFLAGS} ${OBJS} -I ${INCS} ${MLX_MAC} ${LIBFT} -o $(NAME)
+	${CC} ${CFLAGS}	-fsanitize=address -o3 ${OBJS} -I ${INCS} ${MLX_LINUX} ${MAPVALIDATOR} ${LIBFT} -lm -lbsd -lX11 -lXext -o $(NAME)
 
 all:
 	${NAME}
@@ -81,8 +65,6 @@ clean:
 
 allclean:
 	${RM} ${OBJS}
-	@make clean -C $(Lib_MLXOPENGL)
-	@make clean -C $(Lib_MLXMAC)
 	@make clean -C $(Lib_MLXLINUX)
 	@make clean -C $(Lib_FT)
 	@make clean -C $(Lib_MAPVALIDATOR)
